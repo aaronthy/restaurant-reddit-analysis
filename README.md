@@ -172,8 +172,8 @@ Top 3 label suggestions
 ## Demo
 
 ### Streamlit Chat App
-![Chat App](images/Screenshot 2026-02-18 180202.png)
-![Chat App](images/Screenshot 2026-02-18 180522.png)
+![Chat App](images/Screenshot2026-02-18180202.png)
+![Chat App](images/Screenshot2026-02-18180522.png)
 
 ## Challenges & Learnings
 
