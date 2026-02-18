@@ -1,103 +1,228 @@
-# Restaurant Failure Analysis (NLP Project)
+# Restaurant Review Classification (NLP)
 
 ## Overview
-This project analyzes large-scale restaurant review data to identify key factors that contribute to poor customer satisfaction and potential business failure.
+This project builds a **machine learning system** that automatically classifies restaurant reviews into operational categories such as:
 
-Using natural language processing (NLP) and data analysis techniques, the system extracts insights from customer reviews and ranks operational issues based on their impact.
+- service  
+- food_quality  
+- price_value  
+- ambience  
+- cleanliness  
+- management  
+- waiting_time  
+- order_accuracy  
+- staffing  
 
----
-
-## Problem Statement
-Restaurant businesses often struggle to understand the root causes of customer dissatisfaction. This project aims to answer:
-
-"What factors most strongly drive negative restaurant experiences and potential business failure?"
-
----
-
-## Dataset
-- Yelp Open Dataset (~4GB raw data)
-- Sample of 5,000 reviews used for analysis
-- Key fields:
-  - `text` (review content)
-  - `stars` (rating)
-  - `useful` (engagement)
+The goal is to convert unstructured customer feedback into **actionable insights** for restaurant operations.
 
 ---
 
-## Methodology
+## Features
 
-### 1. Data Processing
-- Load large JSON dataset
-- Extract relevant columns
-- Convert to manageable dataset
-
-### 2. Text Classification
-Reviews are categorized into operational KPIs using keyword-based NLP:
-
-- Service quality
-- Food quality
-- Price/value
-- Order accuracy
-- Management
-- Cleanliness
-- Staffing
-- Ambience
-
-### 3. KPI Metrics
-Each category is evaluated using:
-
-- Frequency (how often issues occur)
-- Average rating (impact on customer satisfaction)
-- Engagement (`useful` votes)
-- Sentiment score (TextBlob polarity)
-
-### 4. Failure Score
-A composite score is calculated:
-
-Failure Score =
-0.4 × frequency +
-0.3 × engagement +
-0.2 × rating impact +
-0.1 × sentiment
-
-This ranks the most critical failure drivers.
+- Text classification using TF-IDF + LinearSVC  
+- Handles imbalanced dataset (resampling + class weights)  
+- Model versioning (timestamped models)  
+- Experiment tracking (metrics.csv)  
+- REST API (FastAPI) for prediction  
+- Interactive chat-style UI (Streamlit)  
+- Top-3 label predictions with confidence scores  
 
 ---
 
-## Key Findings
+## Model Details
 
-- Service issues are the most frequent and impactful complaints
-- Food quality problems are strongly associated with low ratings
-- Management-related issues correlate with systemic failures
-- Price sensitivity plays a significant role in customer dissatisfaction
+- **Vectorizer:** TF-IDF (unigrams + bigrams)  
+- **Model:** LinearSVC  
+- **Class Handling:** class_weight="balanced" + controlled resampling  
+
+### Example
+
+**Input**
+```
+Food was cold and bland.
+```
+
+**Output**
+```
+food_quality
+```
+
+## Performance
+
+| Metric      | Value |
+|------------|------|
+| Accuracy   | ~75% |
+| Macro F1   | ~0.68 |
+
+> Performance varies across classes due to imbalance and overlapping categories (e.g., service vs waiting_time).
 
 ---
 
-## Visualization
+## Project Structure
 
-The project includes visualization of top failure drivers:
+restaurant-ml/
+│
+├──images/
+│ └── chatapp.png
+│
+├── data/
+│ └── yelp_labeled.csv
+│ └── yelp_sample.csv
+│
+├── models/
+│ ├── text_classifier.joblib
+│ ├── text_classifier_*.joblib
+│ └── metrics.csv
+│
+├── src/
+│ ├── train_model.py
+│ ├── predict.py
+│ ├── api.py
+│ ├── kpi_analysis.py
+│ ├── label_data.py
+│ ├── load_yelp.py
+│ └── chat_app.py
+│ 
+├── requirements.txt
+├── README.md
+└── .gitignore
 
-(Insert your chart screenshot here later)
+## Installation
+ 
+Clone the repository
+
+```bash
+git clone https://github.com/aaronthy/restaurant-review-classification
+cd restaurant-review-classification
+
+```
+
+## Create Environment
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+
+```
+
+## Install Dependencies
+
+```bash
+pip install -r requirements.txt
+
+```
+
+## Train Model
+
+```bash
+python .\src\train_model.py
+
+```
+
+This will:
+
+-Train the model
+
+-Save versioned models
+
+-Update latest model
+
+-Log metrics
 
 ---
 
-## Tech Stack
-- Python
-- Pandas
-- TextBlob (NLP)
-- Matplotlib
+## Predict (CLI)
+
+```bash
+python src/predict.py
+
+```
+
+## Run API
+
+```bash
+uvicorn src.api:app --reload
+
+```
+
+Open API docs:
+
+```bash
+
+http://127.0.0.1:8000/docs
+
+```
+
+## Run Web App
+
+```bash
+streamlit run src/chat_app.py
+
+```
+Features:
+
+Chat-style input
+
+Real-time predictions
+
+Top 3 label suggestions
+
+---
+
+## Demo
+
+### Streamlit Chat App
+![Chat App](images/Screenshot 2026-02-18 180202.png)
+![Chat App](images/Screenshot 2026-02-18 180522.png)
+
+## Challenges & Learnings
+
+Class imbalance:
+Majority "service" class required downsampling and class weighting
+
+Label ambiguity:
+Some categories overlap (e.g., service vs waiting_time)
+
+Data quality matters:
+Improving labeling consistency has a bigger impact than model changes
 
 ---
 
 ## Future Improvements
-- Machine learning classification model
-- Topic modeling (LDA)
-- Dashboard (Streamlit)
-- Real-time data pipeline
+
+Add more labeled data for rare classes
+
+Improve label definitions
+
+Add probability calibration
+
+Deploy as public web app
+
+Add dashboard for insights
+
+---
+
+## Business Use Case
+
+This model can help restaurant operators:
+
+Identify common customer complaints
+
+Improve service quality
+
+Monitor operational issues
+
+Make data-driven decisions
 
 ---
 
 ## Author
-Aaron (transitioning into Data / ML engineering)
+
+Aaron Tsen Heng Yee
+
+
+
+
+
 
 
