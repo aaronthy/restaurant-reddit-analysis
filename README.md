@@ -1,4 +1,4 @@
-# Restaurant Review Classification (NLP)
+# Restaurant Review Intelligence System (NLP)
 
 ## Overview
 This project builds a **machine learning system** that automatically classifies restaurant reviews into operational categories such as:
@@ -215,6 +215,33 @@ Monitor operational issues
 Make data-driven decisions
 
 ---
+
+## Insights
+
+Analysis of 1,481 customer reviews revealed key patterns in customer feedback:
+
+- **Food quality (34.7%) and price/value (30.8%)** are the most frequently mentioned factors, accounting for 65.5% of all feedback  
+- This suggests that customers primarily evaluate restaurants based on **product quality and price value**  
+- **Ambience (10.2%) and cleanliness (8.2%)** are secondary factors that influence customer experience  
+- **Operational issues** such as waiting time (4.2%), order accuracy (3.4%), and staffing (1.5%) appear less frequently but may have a **direct impact on customer dissatisfaction**  
+- **Management**-related feedback (7.0%) indicates that organizational factors also contribute to customer perception  
+
+These findings highlight that both **core product quality and operational efficiency** play critical roles in customer satisfaction.
+
+These patterns highlight operational issues affecting customer satisfaction.
+
+## Business Recommendations
+
+Based on the analysis:
+
+- **Focus on food quality consistency**, as it is the most critical factor influencing customer perception  
+- **Optimize pricing strategy and portion value**, as price/value is a major driver of feedback  
+- Maintain **cleanliness and ambience standards** to support overall customer experience  
+- Monitor operational issues such as **waiting time and order accuracy**, as these can significantly impact negative reviews despite lower frequency  
+- Investigate management-related feedback to identify potential systemic issues  
+- Although operational issues (e.g., waiting time, staffing) occur less frequently, they are often associated with negative customer experiences and may disproportionately impact low ratings
+Improving both **core product quality** and **operational execution** can lead to higher customer satisfaction and improved ratings.
+
 
 ## Author
 
