@@ -1,19 +1,13 @@
-# Restaurant Review Intelligence System (NLP)
+# Restaurant Review Intelligence System (NLP + Analytics)
 
 ## Overview
-This project builds a **machine learning system** that automatically classifies restaurant reviews into operational categories such as:
 
-- service  
-- food_quality  
-- price_value  
-- ambience  
-- cleanliness  
-- management  
-- waiting_time  
-- order_accuracy  
-- staffing  
+This project builds an end-to-end **machine learning and analytics system** that classifies restaurant reviews into operational categories and transforms unstructured customer feedback into **actionable business insights**.
 
-The goal is to convert unstructured customer feedback into **actionable insights** for restaurant operations.
+The system includes:
+- An NLP model for automated classification  
+- A REST API for real-time predictions  
+- An interactive dashboard for operational analysis and decision-making  
 
 ---
 
@@ -26,6 +20,7 @@ The goal is to convert unstructured customer feedback into **actionable insights
 - REST API (FastAPI) for prediction  
 - Interactive chat-style UI (Streamlit)  
 - Top-3 label predictions with confidence scores  
+- Interactive analytics dashboard (Streamlit) for operational insights  
 
 ---
 
@@ -58,15 +53,29 @@ food_quality
 
 ---
 
+## System Architecture
+
+- **Data Processing:** Cleaning and labeling Yelp review data  
+- **Model Training:** TF-IDF + LinearSVC classification model  
+- **API Layer:** FastAPI service for real-time predictions  
+- **Application Layer:** Streamlit chat app for predictions  
+- **Analytics Layer:** Dashboard for KPI analysis and business insights  
+
+---
+
 ## Project Structure
 
 restaurant-ml/
 │
 ├──images/
-│ └── chatapp.png
+│ ├── chatapp1.png
+│ ├── chatapp2.png
+│ ├── dashboard1.png
+│ ├── dashboard2.png
+│ └── dashboard3.png
 │
 ├── data/
-│ └── yelp_labeled.csv
+│ ├── yelp_labeled.csv
 │ └── yelp_sample.csv
 │
 ├── models/
@@ -75,6 +84,10 @@ restaurant-ml/
 │ └── metrics.csv
 │
 ├── src/
+│ ├── analysis/
+│ │ └── dashboard_data.py
+│ ├── app/
+│ │ └── dashboard.py
 │ ├── train_model.py
 │ ├── predict.py
 │ ├── api.py
@@ -175,16 +188,49 @@ Top 3 label suggestions
 ![Chat App](images/chatapp1.png)
 ![Chat App](images/chatapp2.png)
 
+The chat application allows users to input reviews and receive real-time classification predictions with top-3 label suggestions.
+
+## Dashboard (Business Analytics)
+
+This project also includes an interactive **Restaurant Operations Dashboard** built with Streamlit to analyze customer feedback and identify key operational issues.
+
+The dashboard enables stakeholders to quickly identify key operational issues and make data-driven decisions.
+
+### Features
+
+- Review category distribution (service, food quality, pricing, etc.)
+- Average rating by category
+- Identification of problem areas based on low ratings
+- Interactive filtering to explore reviews by category
+- Automated business insights and recommendations
+
+### Example Insights
+
+- Identifies the **lowest-rated category**
+- Highlights the **most frequent complaint areas**
+- Provides **data-driven recommendations** to improve operations
+
+### Run Dashboard
+
+```bash
+python -m streamlit run src/app/dashboard.py
+```
+## Dashboard Preview
+![Dashboard](images/dashboard1.png)
+![Dashboard](images/dashboard2.png)
+![Dashboard](images/dashboard3.png)
+
+
 ## Challenges & Learnings
 
-Class imbalance:
-Majority "service" class required downsampling and class weighting
+- **Class imbalance:**  
+  Majority "service" class required downsampling and class weighting  
 
-Label ambiguity:
-Some categories overlap (e.g., service vs waiting_time)
+- **Label ambiguity:**  
+  Some categories overlap (e.g., service vs waiting_time)  
 
-Data quality matters:
-Improving labeling consistency has a bigger impact than model changes
+- **Data quality matters:**  
+  Improving labeling consistency has a bigger impact than model changes  
 
 ---
 
@@ -206,13 +252,13 @@ Add dashboard for insights
 
 This model can help restaurant operators:
 
-Identify common customer complaints
+- Identify common customer complaints  
 
-Improve service quality
+- Improve service quality  
 
-Monitor operational issues
+- Monitor operational issues  
 
-Make data-driven decisions
+- Make data-driven decisions  
 
 ---
 
@@ -228,7 +274,7 @@ Analysis of 1,481 customer reviews revealed key patterns in customer feedback:
 
 These findings highlight that both **core product quality and operational efficiency** play critical roles in customer satisfaction.
 
-These patterns highlight operational issues affecting customer satisfaction.
+These insights highlight key factors influencing customer satisfaction and areas for operational improvement.
 
 ## Business Recommendations
 
@@ -239,9 +285,9 @@ Based on the analysis:
 - Maintain **cleanliness and ambience standards** to support overall customer experience  
 - Monitor operational issues such as **waiting time and order accuracy**, as these can significantly impact negative reviews despite lower frequency  
 - Investigate management-related feedback to identify potential systemic issues  
-- Although operational issues (e.g., waiting time, staffing) occur less frequently, they are often associated with negative customer experiences and may disproportionately impact low ratings
-Improving both **core product quality** and **operational execution** can lead to higher customer satisfaction and improved ratings.
+- Although operational issues (e.g., waiting time, staffing) occur less frequently, they are often associated with negative customer experiences and may disproportionately impact low ratings  
 
+Improving both **core product quality** and **operational execution** can lead to higher customer satisfaction and improved ratings.
 
 ## Author
 
